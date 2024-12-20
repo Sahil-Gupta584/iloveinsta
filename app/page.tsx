@@ -1,18 +1,20 @@
+'use client';
 import { Features } from './components/Features';
 import { DownloadForm } from './components/DownloadForm';
 import { Instructions } from './components/Instructions';
 import { DownloadResult } from './components/DownloadResult';
-import { useDownload } from './hooks/useDownload';
+import { useDownload } from './context/downloadContext';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { Logo } from './components/Logo';
-import { Metadata } from 'next';
 
 export default function Home() {
-  const { isLoading, downloadData } = useDownload();
+  const { isLoading, downloadData, } = useDownload();
 
+  
+  
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen  ">
     <Navbar />
     <main className="container mx-auto px-4 pt-20 pb-12">
       <header className="text-center mb-12">
@@ -22,9 +24,8 @@ export default function Home() {
             iloveinsta
           </h1>
         </div>
-        <p className="text-gray-600 max-w-md mx-auto">
-          Download your favorite Instagram content safely and easily. Just paste the URL and we'll handle the rest.
-        </p>
+        <p className=" max-w-md mx-auto">
+        Download your favorite Instagram Reels in HD quality. Just paste the Reel URL and we'll handle the rest.        </p>
       </header>
       
       <div className="flex justify-center mb-12">
@@ -35,7 +36,7 @@ export default function Home() {
 
       {downloadData && (
         <div className="max-w-xl mx-auto mb-12">
-          <DownloadResult {...downloadData} />
+          <DownloadResult downloadData={downloadData} />
         </div>
       )}
 
@@ -62,50 +63,4 @@ export function LoadingAnimation() {
   );
 }
 
-export const metadata: Metadata = {
-  title: "Free Instagram Downloader - Stories, Reels, Photos, & Profile Pictures", // Optimized for keywords and click-through
-  description:
-    "Quickly download Instagram stories, reels, photos, and profile pictures for free. Enjoy a fast, secure, and user-friendly Instagram content downloader.",
-  keywords: [
-    "free instagram downloader",
-    "download instagram stories",
-    "instagram reels download",
-    "instagram photo saver",
-    "save instagram profile pictures",
-    "secure instagram downloader",
-    "instagram video download",
-    "download instagram content HD",
-  ],
-  openGraph: {
-    title: "Free Instagram Downloader - Stories, Reels, Photos, & Profile Pictures",
-    description:
-      "Easily download Instagram stories, reels, photos, and profile pictures in HD. The perfect tool for saving your favorite Instagram content securely.",
-    type: "website",
-    url: "https://iloveinsta.com",
-    images: [
-      {
-        url: "https://iloveinsta.com/images/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Free Instagram Downloader - Save Stories, Reels, & More",
-      },
-    ],
-  },
-  themeColor: "#ec4899",
-  icons: {
-    icon: [
-      { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
-      { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
-      { rel: "icon", url: "/favicon-apple.png", sizes: "180x180" },
-    ],
-  },
-  viewport: "width=device-width, initial-scale=1.0",
-  alternates: {
-    canonical: "https://iloveinsta.com",
-  },
-  other: {
-    "robots":"index, follow" , // Instructs crawlers to index and follow links
-    "author":"iloveinsta.com" , // Adds site author information
-  },
-  
-};
+

@@ -40,14 +40,14 @@ interface InstructionCardProps {
 
 export function InstructionCard({ icon: Icon, title, description }: InstructionCardProps) {
   return (
-    <div className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
+    <div className="dark:bg-gray-800 dark:hover:shadow-xl dark:hover:shadow-gray-900/30 p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow">
       <div className="flex items-center gap-2 mb-3">
         <div className="p-2 bg-gradient-to-br from-pink-500 to-purple-500 rounded-lg">
           <Icon className="text-white" />
         </div>
         <h3 className="font-medium">{title}</h3>
       </div>
-      <p className="text-gray-600 text-sm">{description}</p>
+      <p className="text-gray-600 text-sm dark:text-white">{description}</p>
     </div>
   );
 }

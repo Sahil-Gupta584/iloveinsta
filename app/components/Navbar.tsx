@@ -1,10 +1,12 @@
-import { Home, Search, PlusSquare, User } from 'lucide-react';
-import { IconButton } from './IconButton';
+import React from 'react';
 import { Logo } from './Logo';
+import { ThemeSwitcher } from './ThemeSwitcher';
 
 export function Navbar() {
   return (
-    <nav className="bg-white border-b border-gray-200 fixed w-full top-0 z-50">
+    <nav className="fixed w-full top-0 z-50 transition-colors duration-200
+       dark:bg-gray-900 dark:border-gray-800 
+       border-b border-gray-200">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center gap-2">
@@ -13,13 +15,8 @@ export function Navbar() {
               iloveinsta
             </span>
           </div>
-
-          <div className="flex items-center gap-4">
-            <IconButton icon={Home} variant="secondary" />
-            <IconButton icon={Search} variant="secondary" className="md:hidden" />
-            <IconButton icon={PlusSquare} variant="secondary" />
-            <IconButton icon={User} variant="secondary" />
-          </div>
+          
+          <ThemeSwitcher />
         </div>
       </div>
     </nav>
