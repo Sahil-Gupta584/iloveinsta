@@ -1,4 +1,4 @@
-// 'use client';
+'use client';
 import { useState } from 'react';
 import { Download, ClipboardPaste, AlertCircle } from 'lucide-react';
 import { IconButton } from './IconButton';

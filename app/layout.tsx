@@ -23,7 +23,7 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "Free Instagram Downloader - Stories, Reels, Photos, & Profile Pictures", // Optimized for keywords and click-through
+  title: "iloveInsta - Intagram Reel Downloader", // Optimized for keywords and click-through
   description:
     "Quickly download Instagram stories, reels, photos, and profile pictures for free. Enjoy a fast, secure, and user-friendly Instagram content downloader.",
   keywords: [
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   ],
 
   openGraph: {
-    title: "Free Instagram Downloader - Stories, Reels, Photos, & Profile Pictures",
+    title: "iloveInsta - Intagram Reel Downloader",
     description:
       "Easily download Instagram stories, reels, photos, and profile pictures in HD. The perfect tool for saving your favorite Instagram content securely.",
     type: "website",
