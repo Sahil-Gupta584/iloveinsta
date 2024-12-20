@@ -25,7 +25,7 @@ export default function Home() {
           </h1>
         </div>
         <p className=" max-w-md mx-auto">
-        Download your favorite Instagram Reels in HD quality. Just paste the Reel URL and we'll handle the rest.        </p>
+        Download your favorite Instagram Reels in HD quality. Just paste the Reel URL and we&apos;ll handle the rest.        </p>
       </header>
       
       <div className="flex justify-center mb-12">
@@ -48,7 +48,7 @@ export default function Home() {
   );
 }
 
-export function LoadingAnimation() {
+ function LoadingAnimation() {
   return (
     <div className="flex flex-col items-center justify-center p-8">
       <div className="relative w-24 h-24">
