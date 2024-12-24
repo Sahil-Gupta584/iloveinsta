@@ -2,13 +2,13 @@
 import { Download, ExternalLink } from 'lucide-react';
 
 
-export function   DownloadResult({downloadData}: {downloadData: {url: string, height: number, width: number,}}) {
+export function   DownloadResult({downloadData}: {downloadData: {url: string}}) {
 
   console.log(downloadData)
   const handleDownload = async () => {
     if (!downloadData) return; // Ensure downloadData exists
     try {
-      const response = await fetch(downloadData.url);
+      const response = await fetch(downloadData.url,{mode:'no-cors'});
       const blob = await response.blob();
       const objectUrl = window.URL.createObjectURL(blob);
       
@@ -19,6 +19,7 @@ export function   DownloadResult({downloadData}: {downloadData: {url: string, he
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(objectUrl);
+      
     } catch (error) {
       console.log(error);
       
@@ -30,7 +31,7 @@ export function   DownloadResult({downloadData}: {downloadData: {url: string, he
     <div className="bg-white p-6 rounded-xl shadow-lg">
       
         <div className="relative mb-4 rounded-lg overflow-hidden">
-          <video src={downloadData.url} className="w-full object-cover" controls={true} height={downloadData.height}></video>
+          <video src={downloadData.url} className="w-full object-cover" controls={true}></video>
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
         </div>
       

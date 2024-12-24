@@ -9,11 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "cheerio": "^1.0.0",
+    "instagram-url-direct": "^1.1.1",
     "lucide-react": "^0.468.0",
     "next": "14.2.20",
     "react": "^18",
-    "react-dom": "^18",
-    "videos-downloader": "^1.0.7"
+    "react-dom": "^18"
   },
   "devDependencies": {
     "@types/node": "^20",

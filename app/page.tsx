@@ -17,14 +17,14 @@ export default function Home() {
     <div className="min-h-screen  ">
     <Navbar />
     <main className="container mx-auto px-4 pt-20 pb-12">
-      <header className="text-center mb-12">
+      <header className="text-center mb-6">
         <div className="flex items-center justify-center gap-2 mb-4">
           <Logo size="lg" />
           <h1 className="text-4xl font-bold bg-gradient-to-r from-pink-500 to-purple-500 bg-clip-text text-transparent">
             iloveinsta
           </h1>
         </div>
-        <p className=" max-w-md mx-auto">
+        <p className=" max-w-md mx-auto text-black dark:text-white">
         Download your favorite Instagram Reels in HD quality. Just paste the Reel URL and we&apos;ll handle the rest.        </p>
       </header>
       

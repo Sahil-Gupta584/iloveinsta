@@ -29,8 +29,13 @@ export function DownloadForm() {
     }
 
     const res = await handleDownload(url);
-    setDownloadData(res);
-    setIsLoading(false)
+    if(res?.url){
+
+      setDownloadData(res);
+      setIsLoading(false)
+    }else{
+      setErr('Something wen wrong!')
+    }
 
   };
 

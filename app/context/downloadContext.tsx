@@ -3,8 +3,6 @@ import { createContext, useContext, useEffect, useState } from 'react';
 
 export interface DownloadData {
   url: string;
-  width: number;
-  height: number;
 }
 export interface DownloadResponse {
   success: boolean;
@@ -16,7 +14,7 @@ export type TUseDownload = {
   isLoading: boolean;
   setIsLoading: (boolean: boolean) => void;
   downloadData: DownloadData | null;
-  setDownloadData: (data: DownloadData) => void;
+  setDownloadData: (data:{url:string}) => void;
 }
 
 
