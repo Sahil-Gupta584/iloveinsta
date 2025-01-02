@@ -15,13 +15,24 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   
 
   useEffect(() => {
-    localStorage.setItem('theme', theme);
-    document.documentElement.classList.remove('light', 'dark');
-    document.documentElement.classList.add(theme);
-  }, [theme]);
 
+    const prevTheme = localStorage.getItem('theme');
+    if(prevTheme){
+
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(prevTheme);
+      setTheme(prev=>prev === 'light' ? 'dark' : 'light')
+    }
+  }, []);
+  
   const toggleTheme = () => {
-    setTheme(prev => prev === 'light' ? 'dark' : 'light');
+    setTheme(prev => {
+      document.documentElement.classList.remove('light', 'dark');
+      document.documentElement.classList.add(prev === 'light' ? 'dark' : 'light');
+       localStorage.setItem('theme',prev === 'light' ? 'dark' : 'light');
+
+      return prev === 'light' ? 'dark' : 'light'
+    });
   };
 
   return (

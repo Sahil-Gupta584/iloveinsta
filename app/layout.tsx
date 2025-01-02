@@ -23,7 +23,7 @@ export default function RootLayout({
 }
 
 export const metadata: Metadata = {
-  title: "iloveInsta - Intagram Reel Downloader", // Optimized for keywords and click-through
+  title: "Instagram Reels Downloader - Fast Download Reels & Videos",
   description:
     "Quickly download Instagram stories, reels, photos, and profile pictures for free. Enjoy a fast, secure, and user-friendly Instagram content downloader.",
   keywords: [
@@ -36,39 +36,12 @@ export const metadata: Metadata = {
     "instagram video download",
     "download instagram content HD",
   ],
-
-  openGraph: {
-    title: "iloveInsta - Intagram Reel Downloader",
-    description:
-      "Easily download Instagram stories, reels, photos, and profile pictures in HD. The perfect tool for saving your favorite Instagram content securely.",
-    type: "website",
-    url: "https://iloveinsta.com",
-    images: [
-      {
-        url: "https://iloveinsta.com/images/og-image.png",
-        width: 1200,
-        height: 630,
-        alt: "Free Instagram Downloader - Save Stories, Reels, & More",
-      },
-    ],
-  },
-  icons: {
-    icon: [
-      { rel: "icon", url: "/favicon-16x16.png", sizes: "16x16" },
-      { rel: "icon", url: "/favicon-32x32.png", sizes: "32x32" },
-      { rel: "icon", url: "/favicon-apple.png", sizes: "180x180" },
-    ],
-  },
-
-  alternates: {
-    canonical: "https://iloveinsta.com",
-  },
   other: {
-    "robots": "index, follow", // Instructs crawlers to index and follow links
-    "author": "iloveinsta.com", // Adds site author information
+    "robots": "index, follow", 
+    "author": "iloveinsta.vercel.app",
   },
-
 };
+
 export const viewport: Viewport = {
   themeColor: "#ec4899",
 }

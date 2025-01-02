@@ -2,57 +2,66 @@
 import { Download, ExternalLink } from 'lucide-react';
 
 
-export function   DownloadResult({downloadData}: {downloadData: {url: string}}) {
+export function DownloadResult({ downloadData }: { downloadData: { urls: string[] } }) {
 
   console.log(downloadData)
-  const handleDownload = async () => {
-    if (!downloadData) return; // Ensure downloadData exists
+
+
+  const handleDownload = async (url:string) => {
     try {
-      const response = await fetch(downloadData.url,{mode:'no-cors'});
+      const response = await fetch('/download', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url: url }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Download failed');
+      }
+
+      // Trigger the file download
       const blob = await response.blob();
-      const objectUrl = window.URL.createObjectURL(blob);
-      
       const link = document.createElement('a');
-      link.href = objectUrl;
-      link.download = 'iloveinsta.mp4';
+      link.href = window.URL.createObjectURL(blob);
+      link.download = 'downloaded-file'; // You can dynamically name the file
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-      window.URL.revokeObjectURL(objectUrl);
-      
     } catch (error) {
-      console.log(error);
-      
-      throw new Error('Download failed');
+      console.error('Error downloading file:', error);
     }
   };
 
-  return (
-    <div className="bg-white p-6 rounded-xl shadow-lg">
-      
-        <div className="relative mb-4 rounded-lg overflow-hidden">
-          <video src={downloadData.url} className="w-full object-cover" controls={true}></video>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-        </div>
-      
-      <div className="flex gap-3">
-        <button
-          onClick={handleDownload}
-          className="flex-1 flex items-center justify-center gap-2 py-3 px-6 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg hover:from-pink-600 hover:to-purple-600 transition-all duration-300"
-        >
-          <Download className="w-5 h-5" />
-          <span>Download</span>
-        </button>
-        
-        <a
-          href={downloadData?.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center p-3 border border-gray-200 rounded-lg hover:  transition-colors"
-        >
-          <ExternalLink className="w-5 h-5 text-gray-600" />
-        </a>
-      </div>
-    </div>
-  );
+
+  return <>
+    {downloadData.urls.map((url, i) =>
+        <>
+          <div key={i} className="bg-white w-fit dark:bg-gray-800 p-6 rounded-xl shadow-lg">
+
+            <video src={url} className="rounded-md mx-auto object-cover h-[400px] w-[300px]" controls={true}></video>
+
+            <div className="flex gap-3 mt-4">
+              <button
+                onClick={()=>handleDownload(url)}
+                className="grow flex items-center justify-center gap-2 py-3 px-6 bg-gradient-to-r from-pink-500 to-purple-500 text-white rounded-lg hover:from-pink-600 hover:to-purple-600 transition-all duration-300"
+              >
+                <Download className="w-5 h-5" />
+                <span>Download</span>
+              </button>
+
+              <a
+                href={url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center p-3 border border-gray-200 rounded-lg hover:  transition-colors"
+              >
+                <ExternalLink className="w-5 h-5 text-gray-600 dark:text-white" />
+              </a>
+            </div>
+          </div>
+        </>
+      )}
+      </>
 }

@@ -19,15 +19,6 @@ export const handleDownload = async (url: string) => {
     await new Promise(resolve => setTimeout(resolve, 2000));
     console.log('url', url);
     if (url.includes('/stories')) {
-      const formData = new FormData();
-      formData.append("k_exp", "1734997732");
-      formData.append("k_token", "d23677cdc6e275ea7fe45193e5e45d33122551c86f7ef1bd5cfa1919c9516190");
-      formData.append("q", "https%3A%2F%2Fwww.instagram.com%2Fstories%2Fdeveloper_rahul_%2F");
-      formData.append("_ts", "1734985567159");
-      formData.append("t", "media");
-      formData.append("lang", "en");
-      formData.append("v", "v2");
-      formData.append("share", "true");
 
       const res = await fetch("https://savethevideo.app/api/ajaxSearch", {
         "headers": {
@@ -55,15 +46,23 @@ export const handleDownload = async (url: string) => {
       const result = await res.json();
       // console.log('Parsed JSON:', result);
       const $ = cheerio.load(result.data);
-     const src = $("a[title='Download Video']").attr('href')
-     console.log('src',src);
-     return {url:src}
+      const allUrls: string[] = [];
+      $("a[title='Download Video']").each((_, element) => {
+        const href = $(element).attr("href");
+        if (href) {
+          allUrls.push(href);
+        }
+      });
+
+      console.log("Extracted URLs:", allUrls);
+
+      return { urls: allUrls };
     }
     const response = await instagramGetUrl("https://www.instagram.com/tv/CdmYaq3LAYo/")
     // console.log('res',response);
 
 
-    return {url:response.media_details[0].url};
+    return {urls:[response.media_details[0].url]};
   } catch (err) {
     console.error('Download failed:', err);
   }
