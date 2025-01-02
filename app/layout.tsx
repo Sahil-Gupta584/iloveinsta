@@ -2,7 +2,7 @@ import { Metadata, Viewport } from "next";
 import "./globals.css";
 import { DownloadProvider } from "./context/downloadContext";
 import { ThemeProvider } from "./context/themeContext";
-
+import { Analytics } from "@vercel/analytics/react"
 
 export default function RootLayout({
   children,
@@ -15,6 +15,7 @@ export default function RootLayout({
         <body className={` antialiased dark:bg-gray-900 text-white bg-gray-50`} >
           <DownloadProvider>
             {children}
+            <Analytics/>
           </DownloadProvider>
         </body>
       </ThemeProvider>
